@@ -22,7 +22,7 @@ fi
 OPENJDK7_URL="https://s3.amazonaws.com/heroku-jvm-langpack-java/openjdk7-u2-heroku-temaki.tar.gz"
 
 if [ ! -d "$BUILD_DIR/.jdk7" ]; then
-  echo -n "-----> Installing OpenJDK7u2 build (to .jdk7)....."
+  echo "-----> Installing OpenJDK7u2 build (to .jdk7)....."
   mkdir "$BUILD_DIR/.jdk7"
   cd "$BUILD_DIR/.jdk7"
   curl --max-time 180 --location $OPENJDK7_URL | tar xz
@@ -31,23 +31,16 @@ if [ ! -d "$BUILD_DIR/.jdk7" ]; then
   echo " done"
 fi
 
-if [ -d "$CACHE_DIR/.vertx" ]; then
-  echo -n "copying vertx to app"
-  cp -r "$CACHE_DIR/.vertx" $BUILD_DIR
-  echo "done"
-fi
-
 VERTX_URL="http://dl.bintray.com/vertx/downloads/vert.x-2.0.1-final.tar.gz"
 
-if [ ! -d "$BUILD_DIR/.vertx" ]; then
-  echo -n "-----> Installing Vert.x build (to .vertx)....."
-  curl --max-time 320 --location $VERTX_URL | tar xz
-  mv vert* .vertx
-  rm '.vertx/bin/vertx.bat'
-  cd $BUILD_DIR
-  cp -r .vertx $CACHE_DIR/.vertx
-  echo " done"
-fi
+echo -n "-----> Installing Vert.x build (to .vertx)....."
+curl --max-time 320 --location $VERTX_URL | tar xz
+mv vert* .vertx
+rm '.vertx/bin/vertx.bat'
+cd $BUILD_DIR
+cp -r .vertx $CACHE_DIR/.vertx
+echo " done"
+
 
 cd $BUILD_DIR
 
