@@ -31,7 +31,7 @@ if [ ! -d "$BUILD_DIR/.jdk7" ]; then
   echo " done"
 fi
 
-VERTX_URL="http://dl.bintray.com/vertx/downloads/vert.x-2.1RC1.tar.gz-"
+VERTX_URL="http://dl.bintray.com/vertx/downloads/vert.x-2.1RC1.tar.gz"
 
 echo -n "-----> Installing Vert.x build (to .vertx)....."
 curl --max-time 320 --location $VERTX_URL | tar xz
